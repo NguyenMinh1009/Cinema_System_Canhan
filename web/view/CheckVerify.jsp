@@ -12,40 +12,48 @@
         <link rel="stylesheet" href="css/CheckVerify.css">
         <title>JSP Page</title>
     </head>
-<body>
-    <br>
-    <br>
-    <div class="cont">
-        <div class="content">
-            <h2>Nhập mã bảo mật</h2>
-            <div class="error-notifi">
-                <p class="error">Số bạn đã nhập không khớp với mã. Vui lòng thử lại</p>
-                <p class="notifi">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 6 số</p>
-            </div>
-            
-            <div class="capcha-email">
-                <label>
-                    <input type="password" placeholder="Nhập mã:" />
-                </label>
-                <div class="email">
-                    <p>Chúng tôi đã gửi cho bạn mã đến: </p>
-                    <p>****************>
+    <body>
+        <br>
+        <br>
+        <div class="cont">
+            <div class="content">
+                <h2>Nhập mã bảo mật</h2>
+                <div class="error-notifi">
+                    <p style="    color: red;
+                       font-weight: 700;">${errorVerify}</p>
+                    </br>
+                    <p class="notifi">Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 6 kí tự</p>
                 </div>
 
-            </div>
+                <form action="CheckVerify" method="post">
+                    <div class="capcha-email">
+                        <label>
+                            <input name="verify" type="password" placeholder="Nhập mã:" />
+                        </label>
+                        <div class="email">
+                            <p>Chúng tôi đã gửi cho bạn mã đến: </p>
+                            <p>${existEmail}
+                        </div>
 
-            <hr class="hr">
-            <div class="ReCapcha-Huy-Gui">
-                <a href="">Bạn chưa nhận được mã?</a>
-                <button type="button" class="submit">Hủy</button>
-                <button type="button" class="submit">Tiếp tục</button>
-            </div>
+                    </div>
 
+                    <hr class="hr">
+                    <div class="ReCapcha-Huy-Gui">
+                        <a style="    margin-top: 50px;
+                           color: blue;
+                           text-decoration: none" href="">Bạn chưa nhận được mã?</a>
+                        <a style="text-decoration: none;" href="login"><button type="button" class="submit">Hủy</button></a>
+                        <button type="submit" class="submit">Tiếp tục</button>
+                    </div>
+
+                </form>
+
+
+
+            </div>
 
         </div>
 
-    </div>
 
-
-</body>
+    </body>
 </html>

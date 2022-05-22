@@ -120,14 +120,14 @@ public class ForgotPasswordController extends HttpServlet {
                     message.setFrom(new InternetAddress("minhnnm1009@gmail.com"));
                     message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(existEmail));
                     message.setSubject("Reset password");
-                    String check = generateRandomVerify();
-                    message.setText("Ma xac nhan: " + check);
+                    String verify = generateRandomVerify();
+                    message.setText("Ma xac nhan: " + verify);
 //            message.setReplyTo(message.getFrom("));
 //                    request.setAttribute("messSuccess", "Check email");
-//                    HttpSession ss = request.getSession();
-//                    ss.setAttribute("check", check);
-//                    ss.setMaxInactiveInterval(10 * 60);
-//                    request.getRequestDispatcher("view/CheckVerify.jsp").forward(request, response);
+                    HttpSession ss = request.getSession();
+                    ss.setAttribute("verify", verify);
+                    ss.setAttribute("existEmail", existEmail);
+                    ss.setMaxInactiveInterval(10 * 60);
                     Transport.send(message);
                     request.getRequestDispatcher("view/CheckVerify.jsp").forward(request, response);
 

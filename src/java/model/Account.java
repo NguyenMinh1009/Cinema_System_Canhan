@@ -16,7 +16,7 @@ public class Account {
     private String password;
     private String fullname;
     private Boolean Gender ;
-    private String dob;
+    private Date dob;
     private String address;
     private String phone;
     private String img;
@@ -27,7 +27,7 @@ public class Account {
         
     }
 
-    public Account(int accId, String email, String password, String fullname, Boolean Gender, String dob, String address, String phone, String img, String role, Boolean status) {
+    public Account(int accId, String email, String password, String fullname, Boolean Gender, Date dob, String address, String phone, String img, String role, Boolean status) {
         this.accId = accId;
         this.email = email;
         this.password = password;
@@ -43,7 +43,7 @@ public class Account {
     
     
 
-    public Account(String email, String password, String fullname, Boolean Gender, String dob, String address, String phone, String img, String role, boolean status) {
+    public Account(String email, String password, String fullname, Boolean Gender, Date dob, String address, String phone, String img, String role, boolean status) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
@@ -98,11 +98,11 @@ public class Account {
         this.Gender = Gender;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

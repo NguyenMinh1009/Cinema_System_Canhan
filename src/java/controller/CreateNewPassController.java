@@ -5,21 +5,19 @@
 package controller;
 
 import DAL.AccountDAO;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import model.Account;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author cloudy_place
  */
-public class SignUpController extends HttpServlet {
+public class CreateNewPassController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +40,6 @@ public class SignUpController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("view/signup.jsp").forward(request, response);
     }
 
     /**
@@ -56,46 +53,25 @@ public class SignUpController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
 
-        String fullName = request.getParameter("name");
-        String email = request.getParameter("emailSignUp");
-        String pass = request.getParameter("passSignUp");
-        boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
-        Date dob = Date.valueOf(request.getParameter("dob"));
-        String address = request.getParameter("address");
-        String phone = request.getParameter("phone");
-        String image = "dsfsd";
-        String role = "Customer";
-        boolean status = Boolean.TRUE;
+        String newPass = request.getParameter("newPass");
+        String rePass = request.getParameter("rePass");
 
-        AccountDAO accountDao = new AccountDAO();
-        String errorExistEmail = "";
-        String errorPassLength = "";
-        String signupSuccessfull = "";
-        boolean checkExistEmail = false;
-        boolean checkPassLength = false;
-        if (accountDao.getExistEmail(email) != null) {
-            errorExistEmail = "Email đã tồn tại. Hãy nhập email khác";
-            request.setAttribute("errorExistEmail", errorExistEmail);
-            checkExistEmail = true;
+        if (newPass.length() < 6) {
+            request.setAttribute("errorPass", "Mật khẩu mới phải có tối thiểu 6 kí tự");
+            request.getRequestDispatcher("view/CreateNewPass.jsp").forward(request, response);
+        } else if (!newPass.equals(rePass)) {
+            request.setAttribute("errorPass", "Xác nhận mật khẩu không chính xác");
+            request.getRequestDispatcher("view/CreateNewPass.jsp").forward(request, response);
+        } else {
+            AccountDAO accountDAO = new AccountDAO();
+            HttpSession ss = request.getSession();
+            accountDAO.updatePassword(ss.getAttribute("existEmail").toString(), newPass);
+            request.getRequestDispatcher("view/ResetPassSuccessful.jsp").forward(request, response);
 
-//            request.getRequestDispatcher("view/signup.jsp").forward(request, response);
-//            response.sendRedirect("login");
         }
-        if (pass.length() < 6) {
-            errorPassLength = "Mật khẩu phải có ít nhất 6 kí tự";
-            request.setAttribute("errorPassLength", errorPassLength);
-            checkPassLength = true;
-        }
-        if (checkExistEmail == false && checkPassLength == false) {
-            Account account = new Account(email, pass, fullName, gender, dob, address, phone, image, role, status);
-            accountDao.insertAccount(account);
-            signupSuccessfull = "Bạn đã đăng ký tài khoản thành công";
-            request.setAttribute("signupSuccessfull", signupSuccessfull);
-        }
-        request.getRequestDispatcher("view/signup.jsp").forward(request, response);
     }
 
     /**

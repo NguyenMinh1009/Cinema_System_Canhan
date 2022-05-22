@@ -12,6 +12,14 @@
         <servlet-name>ForgotPasswordController</servlet-name>
         <servlet-class>controller.ForgotPasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckVerifyController</servlet-name>
+        <servlet-class>controller.CheckVerifyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewPassController</servlet-name>
+        <servlet-class>controller.CreateNewPassController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ForgotPasswordController</servlet-name>
         <url-pattern>/forgotpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckVerifyController</servlet-name>
+        <url-pattern>/CheckVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewPassController</servlet-name>
+        <url-pattern>/CreateNewPass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

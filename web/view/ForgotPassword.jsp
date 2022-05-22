@@ -18,7 +18,7 @@
         <div class="cont">
             <div class="content">
                 <h2>Đặt lại tài khoản của bạn</h2>
-                <p>${mess}</p>
+                <p style="color: red">${mess}</p>
                 <p>Vui lòng nhập email để đặt lại tài khoản của bạn</p>
 
                 <form action="forgotpassword" method="post">
@@ -26,7 +26,7 @@
                         <input name="email" type="email" placeholder="Hãy nhập email của bạn:" />
                     </label>
                     <div class="Huy-Gui">
-                        <button type="button" class="submit">Hủy</button>
+                        <a style="text-decoration: none;" href="login"><button type="button" class="submit">Hủy</button></a>
                         <button type="submit" class="submit" >Gửi</button>
                     </div>
 

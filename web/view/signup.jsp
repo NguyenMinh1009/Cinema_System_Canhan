@@ -67,6 +67,9 @@
                 </div>
                 <div class="form sign-up">
                     <h2>Tạo tài khoản của bạn</h2>
+                    <p style="color: green; margin: auto;
+                       text-align: center;">
+                        ${signupSuccessfull}</p>
                     <form action="signup" method="post">
                         <label>
                             <span>Họ và tên</span>
@@ -80,6 +83,8 @@
                         </label>
                         <label>
                             <span>Password</span>
+                            <p style="color: red;">
+                                ${errorPassLength}</p>
                             <input name="passSignUp" type="password" required/>
                         </label>
                         <label>
@@ -105,10 +110,6 @@
                             <input name="phone" type="text" required/>
                         </label>
                         <button type="submit" class="submit">Sign Up</button>
-                        <p style="color: aqua">
-                            ${signupSuccessfull}
-                        </p>
-
                     </form>
                     <script>
                         document.querySelector('.img__btn').addEventListener('click', function () {

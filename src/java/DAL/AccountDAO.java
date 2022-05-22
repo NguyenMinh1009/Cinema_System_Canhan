@@ -31,7 +31,7 @@ public class AccountDAO extends DBContext {
                 account.setPassword(rs.getString("Password"));
                 account.setFullname(rs.getString("Fullname"));
                 account.setGender(rs.getBoolean("Gender"));
-                account.setDob(rs.getString("DateOfBirth"));
+                account.setDob(rs.getDate("DateOfBirth"));
                 account.setAddress(rs.getString("Address"));
                 return account;
             }
@@ -64,7 +64,7 @@ public class AccountDAO extends DBContext {
             stm.setString(2, a.getPassword());
             stm.setString(3, a.getFullname());
             stm.setBoolean(4, a.getGender());
-            stm.setString(5, a.getDob());
+            stm.setDate(5, a.getDob());
             stm.setString(6, a.getAddress());
             stm.setString(7, a.getPhone());
             stm.setString(8, a.getImg());
@@ -81,13 +81,12 @@ public class AccountDAO extends DBContext {
     public String getExistEmail(String email) {
         String sql = "select Email from Account where Email = ?";
         PreparedStatement stm;
-//        String existEmail = "";
         try {
             stm = connection.prepareStatement(sql);
             stm.setString(1, email);
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
-                return  rs.getString("Email");
+                return rs.getString("Email");
             }
         } catch (SQLException ex) {
             Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,9 +95,28 @@ public class AccountDAO extends DBContext {
 
     }
 
+    public void updatePassword(String email, String newPassword) {
+        String sql = "UPDATE [Account]\n"
+                + "   SET [Password] = ?\n"
+                + " WHERE Email = ?";
+        PreparedStatement stm = null;
+        try {
+            stm = connection.prepareStatement(sql);
+
+            stm.setString(1, newPassword);
+            stm.setString(2, email);
+
+            stm.executeUpdate(); //INSERT UPDATE DELETE
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public static void main(String[] args) {
 //        new AccountDAO().insertAccount(new Account("minhnndfsd@fpt.edu.vn", "1234", "Ngoc Minh", Boolean.TRUE, "2001-03-23", "HP", "324214332", "fgfdsgsdfgdsfg", "45435", Boolean.TRUE));
-       System.out.println(new AccountDAO().getExistEmail("minhnnm1009@gmail.com"));
-    
+//        System.out.println(new AccountDAO().getExistEmail("minhnnm1009@gmail.com"));
+        
+    new AccountDAO().updatePassword("nnmminh1009@gmail.com", "120393");
     }
 }

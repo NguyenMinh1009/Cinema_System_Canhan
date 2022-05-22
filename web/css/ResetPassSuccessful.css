@@ -1,0 +1,77 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 22, 2022, 5:13:12 PM
+    Author     : cloudy_place
+*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background: rgb(148, 218, 237);
+}
+
+.cont {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 600px;
+    height: 450px;
+    margin: 50px auto 50px;
+    background: #fff;
+    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);
+}
+
+.content {
+    margin: 60px 30px 10px 40px;
+}
+
+button {
+    display: block;
+    width: 100px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.submit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #d4af7a;
+    text-transform: uppercase;
+}
+
+.tichxanh{
+    width: 20%;
+}
+.image{
+    display: flex;
+    justify-content: center;
+}
+.notifi{
+    margin-top: 40px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+}
+.login{
+    margin: auto;
+    margin-top: 80px;
+    color: black;
+    border-radius: 30px;
+    background-color: greenyellow;
+    width: fit-content;
+    padding: 20px;
+    font-weight: 700;
+}
